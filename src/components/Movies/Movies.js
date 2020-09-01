@@ -1,9 +1,14 @@
 import React from 'react';
 import './Movies.css';
+import Movie from './Movie';
 
-const Movies = () => {
-    
+
+
+const Movies = (props) => {
+
+
     return(
+       
         <main>
 
            <section className="filters-sec">
@@ -44,62 +49,10 @@ const Movies = () => {
 
                 <div className="movies-list-ctn">
 
-                    <div className="movie">
-                        <div>
-                            <img src="zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="Spider-Man: Far from Home"/>
-                        </div>
-                        <div className="movie-infos">
-                            <button className="delete fa fa-times-circle"></button>
-                        <a href="#"> <h3>Spider-Man: Far from Home</h3></a>
-                            <p>Peter et ses amis passent leurs vacances d’été en Europe. Mais ils n’auront pas vraiment l’occasion de se reposer puisque Peter accepte d’aider Nick Fury pour débusquer les mystérieuses créatures qui sont la cause des catastrophes naturelles qui frappent le continent.</p>
-                            <p><time datetime="2019-06-28">2019-06-28</time></p>
-                            <button className="edit">Edit</button>
-                            
-                        </div>
-                    </div>
+                {props.movies.map((movie) => (
+				<Movie key={movie.id} movie={movie} onDeleteMovie={props.onDeleteMovie} onEditMovie={props.onEditMovie} />
+			))}
 
-                    <div className="movie">
-                        <div>
-                            <img src="zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="Spider-Man: Far from Home"/>
-                        </div>
-                        <div className="movie-infos">
-                            <button className="delete fa fa-times-circle"></button>
-                        <a href="#"> <h3>Spider-Man: Far from Home</h3></a>
-                            <p>Peter et ses amis passent leurs vacances d’été en Europe. Mais ils n’auront pas vraiment l’occasion de se reposer puisque Peter accepte d’aider Nick Fury pour débusquer les mystérieuses créatures qui sont la cause des catastrophes naturelles qui frappent le continent.</p>
-                            <p><time datetime="2019-06-28">2019-06-28</time></p>
-                            <button className="edit">Edit</button>
-                            
-                        </div>
-                    </div>
-
-                    <div className="movie">
-                        <div>
-                            <img src="zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="Spider-Man: Far from Home"/>
-                        </div>
-                        <div className="movie-infos">
-                            <button className="delete fa fa-times-circle"></button>
-                        <a href="#"> <h3>Spider-Man: Far from Home</h3></a>
-                            <p>Peter et ses amis passent leurs vacances d’été en Europe. Mais ils n’auront pas vraiment l’occasion de se reposer puisque Peter accepte d’aider Nick Fury pour débusquer les mystérieuses créatures qui sont la cause des catastrophes naturelles qui frappent le continent.</p>
-                            <p><time datetime="2019-06-28">2019-06-28</time></p>
-                            <button className="edit">Edit</button>
-                            
-                        </div>
-                    </div>
-
-                    <div className="movie">
-                        <div>
-                            <img src="zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="Spider-Man: Far from Home"/>
-                        </div>
-                        <div className="movie-infos">
-                            <button className="delete fa fa-times-circle"></button>
-                        <a href="#"> <h3>Spider-Man: Far from Home</h3></a>
-                            <p>Peter et ses amis passent leurs vacances d’été en Europe. Mais ils n’auront pas vraiment l’occasion de se reposer puisque Peter accepte d’aider Nick Fury pour débusquer les mystérieuses créatures qui sont la cause des catastrophes naturelles qui frappent le continent.</p>
-                            <p><time datetime="2019-06-28">2019-06-28</time></p>
-                            <button className="edit">Edit</button>
-                            
-                        </div>
-                    </div>
-    
                 </div>
 
             </section>
@@ -108,6 +61,7 @@ const Movies = () => {
 
 
         </main>
+      
 
   
     )

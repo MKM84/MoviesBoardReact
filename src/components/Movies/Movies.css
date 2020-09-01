@@ -1,0 +1,155 @@
+/* Section des filtres de la page movies */
+/* ---------------------------------------------------------- */
+.filters{
+    background-color: #F7F7F7;
+    box-shadow: 0 3px 6px 0 #ccc;
+}
+.filters-inputs input{
+    height: 30px;
+    border: 1px solid #e7e7e7;
+    width: 180px;
+}
+.filters-inputs h5{
+    color: #707070;
+}
+.filters-inputs input[type=date]{
+    color: #707070;
+    opacity: 100%;
+    width: 183px;
+}
+.filters-inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 60%;
+    margin: 0 auto;
+}
+.filters-inputs select{
+    height: 32px;
+    border: 1px solid #e7e7e7;
+    width: 186px;
+    color: #707070;
+    font-family: 'Raleway', sans-serif;
+}
+.fa-filter{
+    font-size: 20px;
+    color: #474788;
+}
+
+
+/* Filtres sélectionnés */
+/* ---------------------------------------------------------- */
+.selected-filters-ctn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+    margin: 0 auto;
+    padding-top: 8px;
+
+}
+.selected-filters-ctn div{
+    position: relative;
+    border: 1px solid #e7e7e7;
+    height: 24px;
+    color: #707070;
+    font-size: 12px;
+    width: 86px;
+    margin: 12px;
+}
+.selected-filters-ctn div p{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.selected-filters-ctn div:after{
+    content: "\f057";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+    left: 67px;
+    bottom: 4px;
+    position: absolute;
+    color: #474788;
+}
+
+    /* Movies list & movie home page */
+/* ---------------------------------------------------------- */
+
+.movies-list-ctn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 50px;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+.movie{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    width: 600px;
+    background-color:#F7F7F7;
+    border-radius: 30px;
+    height:300px;
+    position: relative;
+    box-shadow: 0 3px 6px 0 #ccc;
+
+}
+.movie img{
+    height:300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 30px 30px;
+    border-bottom-left-radius: 30px 30px;
+}
+.movie-infos{
+    padding: 16px;
+    width: 360px;
+    position: absolute;
+    right: 3px;
+}
+.movie-infos h3{
+    color: #474788;
+}
+.movie-infos p {
+    font-size: 14px;
+    color:#707070;
+}
+.movie-infos a{
+    text-decoration: none;
+}
+.movie-infos button.delete{
+    position: absolute;
+    right: 20px;
+    top: -20px;
+    border: none;
+    background: none;
+    font-size: 26px;
+    color: #474788;
+}
+.movie-infos button.edit{
+    position: absolute;
+    right: 50px;
+    bottom: -10px;
+    background: #474788;
+    border: none;
+    color: #fff;
+    width: 90px;
+    height: 26px;
+    font-family: 'Raleway', sans-serif;
+}

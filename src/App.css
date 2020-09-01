@@ -1,38 +1,59 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css');
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Modification de la couleur du texte du placeholder */
+/* ---------------------------------------------------------- */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #707070;
+    opacity: 1; /* Firefox */
+    font-family: 'Raleway', sans-serif;
+  }
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #707070;
+    font-family: 'Raleway', sans-serif;
+  }
+  
+::-ms-input-placeholder { /* Microsoft Edge */
+    color:#707070;
+    font-family: 'Raleway', sans-serif;
+  }
+
+
+
+/* Header des pages */
+/* ---------------------------------------------------------- */
+header {
+    text-align: center;
+    background-color: #474788;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+header h1{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+    /* Footer */
+/* ---------------------------------------------------------- */
+footer {
   text-align: center;
+  background-color: #474788;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer p{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
