@@ -1,60 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Movies from './components/Movies/Movies';
+import HomePage from './components/HomePage/HomePage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import AddMovie from './components/AddMovie/AddMovie';
-import MovieForm from './components/MovieForm/MovieForm';
-
+import EditMovie from './components/EditMovie/EditMovie';
 import axios from 'axios';
-import { Switch, Route} from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
+import { MoviesProvider } from './MoviesContext';
+import {useHistory} from "react-router";
 
-
-
-
-function App() {
-
+function App(props) {
+  const hist = useHistory();
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setselectedMovie] = useState([{}]);
- 
-  useEffect(() => {
 
+  useEffect(() => {
     axios.get('http://localhost:3000/movies').then(function (response) {
       setMovies(response.data);
       }).catch(function (error) {
-      alert(error);
+      console.log(error);
       });
-
-
   }, []);
 
-    const onSelectMovie = (e, id_) => {
-      e.preventDefault();
-     let selectedMovie_ = movies.filter((movie) => movie.id === id_);
-     setselectedMovie(selectedMovie_);
-     console.log(selectedMovie_);
 
-    }
-
+  const onDeleteMovie = (id) => {
+        axios.delete(`http://localhost:3000/movies/${id}`)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .then(hist.push('/movies'));
+  }
+  
   return (
-    <div className="App">
+    <MoviesProvider value={movies}>
 
-      <header>
-          <h1>MoviesBoard</h1>
-      </header>
-      <Switch>
-        <Route exact path="/movies"><Movies movies={movies} onSelectMovie={onSelectMovie}/></Route>
-        <Route exact path="/movie/:id"><MovieDetails movie={selectedMovie}/></Route>
-        <Route exact path="/add/"><AddMovie /></Route>
-        <Route exact path="/movie/edit/:id"><MovieForm /></Route>
-      </Switch>;
-      
+        <div className="App">
+            <header>
+            <Link to='/' ><h1>MoviesBoard</h1></Link>
+            </header>
+            <Switch>
+                <Route exact path="/"><HomePage /></Route>
+                <Route exact path="/movies"><Movies onDeleteMovie={onDeleteMovie} /></Route>
+                <Route exact path="/movie/:id"><MovieDetails onDeleteMovie={onDeleteMovie}/></Route>
+                <Route exact path="/add"><AddMovie /></Route>
+                <Route exact path="/movie/edit/:id">{ movies.length > 0 ? <EditMovie movies={movies}/> : null}</Route>
+            </Switch>;
+        </div>
 
-      {/* <footer>
-         <p>MoviesBoard</p>
-      </footer> */}
-
-
-    </div>
+    </MoviesProvider>
   );
 }
 

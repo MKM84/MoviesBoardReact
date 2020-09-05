@@ -91,9 +91,13 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 0px;
     flex-wrap: wrap;
     padding-bottom: 50px;
+}
+.movies-sec > h2{
+    color: #474788;
+    text-align: center;
 }
 .movie{
     display: flex;
@@ -111,6 +115,7 @@
 }
 .movie img{
     height:300px;
+    max-width: 213px;
     position: absolute;
     top: 0;
     left: 0;
@@ -131,25 +136,138 @@
     color:#707070;
 }
 .movie-infos a{
-    text-decoration: none;
+    color: #474788;
 }
-.movie-infos button.delete{
+button.delete{
     position: absolute;
     right: 20px;
-    top: -20px;
+    top: 25px;
     border: none;
     background: none;
     font-size: 26px;
     color: #474788;
+    cursor: pointer;
 }
-.movie-infos button.edit{
+div.edit{
     position: absolute;
     right: 50px;
-    bottom: -10px;
+    bottom: 30px;
     background: #474788;
     border: none;
     color: #fff;
-    width: 90px;
+    width: 60px;
     height: 26px;
     font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    text-align: center;
+}
+div.edit a{
+    color: #fff;
+    text-decoration: none;
+    line-height: 27px;
+    font-size: 14px;
+}
+
+
+/* Version mobile */
+/* ---------------------------------------------------------- */
+    /* Movies list & movie home page */
+/* ---------------------------------------------------------- */
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+.filters {
+    padding-bottom: 25px;
+}
+.filters-inputs {
+    flex-direction: column;
+}
+.filters-inputs input{
+    margin-bottom: 12px;
+ }
+ .selected-filters-ctn {
+    max-width: 90%;
+ }
+ .movie {
+     flex-direction: column;
+     width: 90%;
+     height: 100%;
+     align-items: initial;
+     margin-bottom: 30px;
+ }
+ .movie img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    border-bottom-left-radius: 0px 0px;
+    border-top-right-radius: 30px 30px;
+    position: initial;
+ }
+ .movie-infos {
+    padding: 16px;
+    width: 90%;
+    position: initial;
+    min-height: 200px;
+
+}
+button.delete {
+    right: 130px;
+    top: 680px; 
+}
+}
+/* // Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) { 
+.filters {
+    padding-bottom: 25px;
+}
+.filters-inputs {
+    flex-direction: column;
+}
+.filters-inputs input{
+    margin-bottom: 12px;
+ }
+ .selected-filters-ctn {
+    max-width: 80%;
+ }
+ .movie {
+    flex-direction: column;
+    width: 90%;
+    height: 100%px;
+}
+
+.movie {
+    flex-direction: column;
+    width: 90%;
+    height: 100%;
+    align-items: initial;
+    margin-bottom: 30px;
+}
+.movie img {
+   height: auto;
+   width: 100%;
+   max-width: 100%;
+   border-bottom-left-radius: 0px 0px;
+   border-top-right-radius: 30px 30px;
+   position: initial;
+}
+.movie-infos {
+   padding: 16px;
+   width: 90%;
+   position: initial;
+   min-height: 200px;
+
+}
+button.delete {
+   right: 130px;
+   top: 680px; 
+}
+
+}
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) { 
+
+.filters-inputs {
+    max-width: 91%;
+}
+
 }

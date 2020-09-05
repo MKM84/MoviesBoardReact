@@ -1,0 +1,75 @@
+   /* Add movie */
+/* ---------------------------------------------------------- */
+/* Section des filtres  */
+/* ---------------------------------------------------------- */
+
+.form-filters{
+    background-color: #F7F7F7;
+    box-shadow: 0 3px 6px 0 #ccc;
+}
+.form-filters-inputs input{
+    height: 30px;
+    border: 1px solid #e7e7e7;
+    width: 150px;
+    margin: 5px;
+}
+.form-filters-inputs h5{
+    color: #707070;
+    padding: 10px;
+}
+.form-filters-inputs input[type=date]{
+    color: #707070;
+    opacity: 100%;
+    width: 153px;
+}
+.form-filters-inputs input[type=submit]{
+    opacity: 100%;
+    width: 60px;
+    background: #474788;
+    border: none;
+    color: #fff;
+}
+.form-filters-inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.movie-result-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 70%;
+    max-width: 950px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.searchResult{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F7F7F7;
+    margin: 20px;
+    padding: 10px;
+    width: 40%;
+    min-width: 350px;
+
+}
+.searchResult button{
+    width: 60px;
+    height: 30px;
+    background: #474788;
+    border: none;
+    color: #fff;
+}
+
+.please-search{
+    margin-top: 50px;
+    text-align: center;
+    color: #474788;
+}

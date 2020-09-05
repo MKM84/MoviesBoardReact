@@ -1,0 +1,92 @@
+    /* Movie details */
+/* ---------------------------------------------------------- */
+.movie-details-sec{
+    margin: 0 auto;
+}
+.movie-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    width: 940px;
+    background-color:#F7F7F7;
+    border-radius: 30px;
+    height:600px;
+    position: relative;
+    box-shadow: 0 3px 6px 0 #ccc;
+}
+.movie-details img.poster{
+    height:600px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top-left-radius: 30px 30px;
+    border-bottom-left-radius: 30px 30px;
+}
+.backdrop-ctn{
+    position: relative;
+}
+.movie-details img.backdrop{
+    width: 70px;
+    height: auto;
+    position: absolute;
+    top: -12px;
+    left: 80px;
+}
+.movie-details-infos{
+    padding: 16px;
+    width: 490px;
+    position: absolute;
+    right: 3px;
+}
+.movie-details-infos h3{
+    color: #474788;
+}
+.movie-details-infos h2{
+    color: #474788;
+    font-size: 36px;
+}
+.movie-details-infos p {
+    font-size: 14px;
+    color:#707070;
+}
+.movie-details-infos b {
+    color: #474788;
+}
+.movie-details-infos a{
+    text-decoration: none;
+    color: #474788;
+}
+button.movie-details-delete{
+    position: absolute;
+    right: 20px;
+    top: 25px;
+    border: none;
+    background: none;
+    font-size: 40px;
+    color: #474788;
+    cursor: pointer;
+}
+div.movie-details-edit{
+    position: absolute;
+    right: 50px;
+    bottom: 30px;
+    background: #474788;
+    border: none;
+    color: #fff;
+    width: 90px;
+    height: 32px;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+    text-align: center;
+}
+div.movie-details-edit a{
+    color: #fff;
+    text-decoration: none;
+    line-height: 32px;
+    font-size: 16px;
+
+}

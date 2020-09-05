@@ -1,21 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams } from "react-router-dom";
 import '../MovieForm/MovieForm.css';
 import {useFormik} from 'formik';
 import axios from 'axios';
-import MoviesContext from '../../MoviesContext';
+// import MoviesContext from '../../MoviesContext';
+
 
 const EditMovie = (props) => {
 
-    
     const slug_  = useParams();
     console.log(slug_);
     const id_integer = parseInt(slug_.id);
-    console.log('integer',id_integer);
+    console.log(id_integer);
     console.log(props);
 
-    let movie = props.movies.filter((m) => m.id === id_integer)[0];
-    console.log(movie);
+    
+    let movie_ = props.movies.filter((m) => m.id === id_integer)[0];
+    console.log(movie_);
+    const[movie, seMovie] = useState(movie_);
+
+    useEffect(() => {
+      seMovie(movie_);
+    })
 
     const editMovieFormik = useFormik({
         initialValues: 
@@ -24,15 +30,15 @@ const EditMovie = (props) => {
             release_date: movie.release_date,
             categories: [],
             description: movie.description,
-            poster : movie.poster,
-            backdrop: movie.backdrop,
+            poster : `https://image.tmdb.org/t/p/w342/${movie.poster}`,
+            backdrop: `https://image.tmdb.org/t/p/w342/${movie.backdrop}`,
             actors:[],
-            similar_movies:[]
-            
+            similar_movies:[],
+            id: movie.id
         },
         onSubmit: values => {
           console.log(values);
-          axios.put('http://localhost:3000/movies/'+ movie.id, {  
+          axios.post('http://localhost:3000/movies', {
             title: values.title,
             release_date: values.release_date,
             categories: values.categories,
@@ -40,8 +46,7 @@ const EditMovie = (props) => {
             poster : values.poster,
             backdrop: values.backdrop,
             actors: values.actors,
-            similar_movies: values.similar_movies
-             
+            similar_movies: values.similar_movies,    
             })
             .then((response) => {
             console.log(response);
@@ -57,11 +62,11 @@ const EditMovie = (props) => {
             errors.title = "Invalid title";
           }
 
-          // if (!values.id) {
-          //   errors.id = "Required";
-          // } else if (isNaN(values.id)) {
-          //   errors.id = "Type of id must be an integer";
-          // }
+          if (!values.id) {
+            errors.id = "Required";
+          } else if (isNaN(values.id)) {
+            errors.id = "Type of id must be integer";
+          }
     
           if (!values.release_date) {
             errors.release_date = "Required";
@@ -85,15 +90,15 @@ const EditMovie = (props) => {
             { typeof movie != 'undefined' ?  
 
             <form onSubmit={editMovieFormik.handleSubmit}>
-                 {/* <div className="input-movie-data">
+                 <div className="input-movie-data">
                     <label htmlFor="id">Id</label>
                     <input 
                     type="number" 
-                    name="id" 
-                    id="id"  
+                    name="id-1" 
+                    id="id-1"  
                     defaultValue={editMovieFormik.values.id} 
                     onChange={editMovieFormik.hanndleChange}/>
-                </div> */}
+                </div>
 
                 <div className="input-movie-data">
                     <label htmlFor="title">Title</label>
@@ -161,7 +166,7 @@ const EditMovie = (props) => {
 
             </form>
 
-                : <h3>Id not valid or movie does not exist...</h3> }  
+                : null }  
 
         </section>
     )

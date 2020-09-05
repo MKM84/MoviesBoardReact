@@ -1,77 +1,161 @@
 import React from 'react';
 import './MovieForm.css';
+import {useFormik} from 'formik';
+import axios from 'axios';
 
-const MovieForm = () => {
+
+const MovieForm = (props) => {
+
+    const movieFormik = useFormik({
+        initialValues: 
+        {
+            title: props.movie.title,
+            release_date: props.movie.release_date,
+            categories: [],
+            description: props.movie.overview,
+            poster : `https://image.tmdb.org/t/p/w342/${props.movie.poster_path}`,
+            backdrop: `https://image.tmdb.org/t/p/w342/${props.movie.backdrop_path}`,
+            actors:[],
+            similar_movies:[],
+            id: props.movie.id  
+        },
+
+        onSubmit: values => {
+          axios.post('http://localhost:3000/movies', {
+            title: values.title,
+            release_date: values.release_date,
+            categories: values.categories,
+            description: values.description,
+            poster : values.poster,
+            backdrop: values.backdrop,
+            actors: values.actors,
+            similar_movies: values.similar_movies, 
+        })
+          .then((response) => {
+            console.log(response);
+          }, (error) => {
+            console.log(error);
+          });
+        },
+
+        validate: values => {
+          const errors = {};
+          if (!values.title) {
+            errors.title = "Required";
+          } else if (values.title.length < 1) {
+            errors.title = "Invalid title";
+          }
+
+          if (!values.id) {
+            errors.id = "Required";
+          } else if (isNaN(values.id)) {
+            errors.id = "Type of id must be integer";
+          }
+    
+          if (!values.release_date) {
+            errors.release_date = "Required";
+          } 
+
+          if (!values.description) {
+            errors.description = "Required";
+          } 
+          return errors;
+        }
+      });
 
     return(
 
         <section className="add-movie-form">
+          
             <h3>Movie informations</h3>
-            <form>
+
+            <form onSubmit={movieFormik.handleSubmit}>
+
+                <div className="input-movie-data">
+                    <label htmlFor="id">Id</label>
+                    <input 
+                    type="number" 
+                    name="id" 
+                    id="id"  
+                    defaultValue={movieFormik.values.id} 
+                    onChange={movieFormik.hanndleChange}/>
+                </div>
+                
                 <div className="input-movie-data">
                     <label htmlFor="title">Title</label>
-                    <input type="text" name="title" id="title"/>
+                    <input 
+                    type="text" 
+                    name="title" 
+                    id="title" 
+                    defaultValue={movieFormik.values.title} 
+                    onChange={movieFormik.handleChange}/>
+                    {movieFormik.errors.title ? (
+                    <div>{movieFormik.errors.title}</div>
+                    ) : null}
                 </div>
+                
                 <div className="input-movie-data">
                     <label htmlFor="release_date">Release_date</label>
-                    <input type="text" name="release_date" id="release_date"/>
+                    <input 
+                    type="text" 
+                    name="release_date" 
+                    id="release_date" 
+                    defaultValue={movieFormik.values.release_date} 
+                    onChange={movieFormik.handleChange}/>
+                    {movieFormik.errors.release_date ? (
+                    <div>{movieFormik.errors.release_date}</div>
+                    ) : null}
                 </div>
-                <div className="input-movie-categories">
-                    <label htmlFor="categories">Categories</label>
-                    <div>
-                        <input type="text" name="categories" id="categories"/>
-                        
-                        <input type="text" name="categories-1" id="categories-1"/>
-                        
-                        <input type="text" name="categories-2" id="categories-2"/>
-                        <input type="text" name="categories-3" id="categories-3"/>
-                    </div>
-                </div>
+
                 <div className="input-movie-data">
                     <label htmlFor="description">Description</label>
-                    <textarea name="description" id="description"></textarea>
+                    <textarea 
+                    name="description" 
+                    id="description" 
+                    defaultValue={movieFormik.values.description} 
+                    onChange={movieFormik.handleChange}>  
+                    </textarea>
+                    {movieFormik.errors.description ? (
+                    <div>{movieFormik.errors.description}</div>
+                    ) : null}
                 </div>
+
                 <div className="input-movie-data">
                     <label htmlFor="poster">Poster</label>
-                    <input type="url" name="poster" id="poster" pattern="https://.*" size="30"
-                        />
+                    <input 
+                    type="url" 
+                    name="poster" 
+                    id="poster" 
+                    defaultValue={movieFormik.values.poster} 
+                    onChange={movieFormik.handleChange}/>
+                    {movieFormik.errors.poster ? (
+                    <div>{movieFormik.errors.poster}</div>
+                    ) : null}
                 </div>
+
                 <div className="input-movie-data">
                     <label htmlFor="backdrop">Backdrop</label>
-                    <input type="url" name="backdrop" id="backdrop" pattern="https://.*" size="30" />
-                </div>
-                <div className="input-movie-categories">
-                    <label htmlFor="categories">Actors</label>
-                    <div>
-                        <input type="text" name="actors" id="actors"/>
-                        
-                        <input type="text" name="actors-1" id="actors-1"/>
-                        
-                        <input type="text" name="actors-2" id="actors-2"/>
-                        <input type="text" name="actors-3" id="actors-3"/>
-                    </div>
+                    <input 
+                    type="url" 
+                    name="backdrop" 
+                    id="backdrop"   
+                    defaultValue={movieFormik.values.backdrop} 
+                    onChange={movieFormik.handleChange}/>
+                    {movieFormik.errors.backdrop ? (
+                    <div>{movieFormik.errors.backdrop}</div>
+                    ) : null}
                 </div>
 
-                <div className="input-movie-categories">
-                    <label htmlFor="similar-movies">Similar movies</label>
-                    <div>
-                        <input type="text" name="similar-movies" id="similar-movies"/>
-                        
-                        <input type="text" name="similar-movies-1" id="similar-movies-1"/>
-                        
-                        <input type="text" name="similar-movies-2" id="similar-movies-2"/>
-                        <input type="text" name="similar-movies-3" id="similar-movies-3"/>
-                    </div>
-                </div>
                 <div className="submit-movie-info">
-                    <input type="submit"/>
-                </div>
+                    <input 
+                    type="submit" 
+                    value="Send movie informations"
+                    
+                    />
+                </div>  
 
-                
             </form>
-
-
-
+            
         </section>
     )
 }

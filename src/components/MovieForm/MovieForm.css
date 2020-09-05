@@ -67,7 +67,7 @@ div.input-movie-categories label{
    box-shadow: 0 2px 2px 0 rgb(245, 245, 245);
 }
 .add-movie-form input[type=submit]{
-    width: 100px;
+    width: 170px;
     background: #474788;
     border: none;
     color: #fff;

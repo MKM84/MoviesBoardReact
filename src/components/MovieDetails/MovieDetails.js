@@ -1,47 +1,60 @@
 
-import React from 'react';
-import './Movies.css';
+import React, { useContext } from 'react';
+import './MovieDetails.css';
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import MoviesContext from '../../MoviesContext';
 
-const MovieDetails = () => {
+const MovieDetails = (props) => {
+
+    const movies = useContext(MoviesContext);
+    const slug  = useParams();
+    const id_integer = parseInt(slug.id);
+    const movie = movies.filter((m) => m.id === id_integer)[0];
+
+
     return(
-
+       
         <main>
 
-        <section className="movie-details-sec">
-    
-                <div className="movie-details">
-                    <div>
-                        <img className="poster" src="zrNKUa5SBUwue39coJArNdDgQJM.jpg" alt="Spider-Man: Far from Home"/>
-                    </div>
-    
-                    <button className="movie-details-delete fa fa-times-circle"></button>
-    
-                    <div className="movie-details-infos">
-                        
-                       <a href="#"> <h2>Spider-Man: Far from Home</h2></a>
-                        <p>Peter et ses amis passent leurs vacances d’été en Europe. Mais ils n’auront pas vraiment l’occasion de se reposer puisque Peter accepte d’aider Nick Fury pour débusquer les mystérieuses créatures qui sont la cause des catastrophes naturelles qui frappent le continent.</p>
-                        <p><time dateTime="2019-06-28"><b>Release date :</b> 2019-06-28</time></p>
-                        <p><b>Actors : </b>Tom Holland, Samuel L. Jackson, Jake Gyllenhaal, Marisa Tomei, Jon Favreau, Zendaya, X-Men: Apocalypse, Captain Marvel, Superman Returns</p>
-                        <p><b>Categories : </b>Action, Adventure, Sciences-Fiction</p>
-                        <p><b>Similar movies : </b>X-Men: Apocalypse, Captain Marvel, Superman Returns</p>
-                        <br/>
-                        <p className="backdrop-ctn"><b>Backdrop : </b> <img className="backdrop" src="5myQbDzw3l8K9yofUXRJ4UTVgam.jpg" alt="Spider-Man: Far from Home"/></p>
+            { typeof movie != 'undefined' ?  
              
+                <section className="movie-details-sec">
+    
+                    <div className="movie-details" id={movie.id}>
+
+                        <div>
+                            <img className="poster" src={movie.poster} alt={movie.title}/>
+                        </div>
+
+                        <button 
+                        className="movie-details-delete fa fa-trash fa-10x"
+                        onClick={() => props.onDeleteMovie(movie.id)}>
+                        </button>
+
+                        <div className="movie-details-infos">
+                            <h2>{movie.title}</h2>
+                            <p>{movie.description}</p>
+                            <p><time dateTime={movie.release_date}><b>Release date :</b> {movie.release_date}</time></p>
+                            <p><b>Actors : </b></p>
+                            <p><b>Categories : </b></p>
+                            <p><b>Similar movies : </b></p>
+                            <br/>
+                            <p className="backdrop-ctn"><b>Backdrop : </b> <img className="backdrop" src={movie.backdrop} alt={movie.title}/></p>
+                        </div>
+        
+                        
+                        <div className="movie-details-edit" ><b><Link to={`/movie/edit/${movie.id}`}>Edit</Link></b></div> 
+
                     </div>
-                    
-                    <button className="movie-details-edit">Edit</button>
-                </div>
-    
-                
-           
-        </section>
-    
-    
-  </main>
 
+                </section> 
+            
+            : 
+                <h3>This movie is not in your library or the movie id does not exist!</h3> }  
+    
+        </main> 
   
-
-
     )
 }
 
