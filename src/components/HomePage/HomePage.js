@@ -14,20 +14,21 @@ const HomePage = () => {
                 <Link to="/movies">
                 
                     <div className="btn-navigation">
-                    <i class="fa fa-archive"></i>
+                    <i className="fa fa-archive"></i>
                         <p><b>My Movies</b></p>
                     </div>
                 </Link>
                 <Link to="/add">
                     <div className="btn-navigation">
-                    <i class="fa fa-plus-circle"></i>
+                    <i className="fa fa-plus-circle"></i>
                         <p><b>Add movie</b></p>
                     </div>
                 </Link>
                 </div>
-
+            
             </section>
         </main>
+    
     )
 }
 

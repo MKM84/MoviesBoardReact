@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import './Movies.css';
 import Movie from './Movie';
-import MoviesContext from '../../MoviesContext';
+// import MoviesContext from '../../MoviesContext';
 
 
 const Movies = (props) => {
 
-    const movies = useContext(MoviesContext);
+    // const movies = useContext(MoviesContext);
+    const movies = props.movies;
 
     return(
        
