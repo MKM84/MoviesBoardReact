@@ -11,13 +11,16 @@ const HomePage = () => {
                     <p>Your movies library...</p>
                 </div>
                 <div className="ctn-navigation">
+
+                {/* Link to la liste des movies */}
                 <Link to="/movies">
-                
                     <div className="btn-navigation">
                     <i className="fa fa-archive"></i>
                         <p><b>My Movies</b></p>
                     </div>
                 </Link>
+
+                {/* Link to la page d'ajouts */}
                 <Link to="/add">
                     <div className="btn-navigation">
                     <i className="fa fa-plus-circle"></i>

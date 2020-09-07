@@ -16,6 +16,7 @@ const Movie = (props) => {
             <button className="delete fa fa-trash fa-7x" onClick={(e) => props.onDeleteMovie(props.movie.id)}></button>
             <div className="movie-infos">
                 <h3><Link to={`/movie/${props.movie.id}`}>{props.movie.title}</Link></h3>
+                {/* Tronquer la description */}
                 <p>{`${props.movie.description.substr(0, 150)}...`}</p>
                 <p><time dateTime={props.movie.release_date}><b>{props.movie.release_date}</b></time></p>  
             </div>

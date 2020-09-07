@@ -2,9 +2,11 @@ import React from 'react';
 import './MovieForm.css';
 import {useFormik} from 'formik';
 import axios from 'axios';
+import {useHistory} from "react-router";
 
 
 const MovieForm = (props) => {
+  const hist = useHistory();
 
     const movieFormik = useFormik({
         initialValues: 
@@ -16,11 +18,13 @@ const MovieForm = (props) => {
             poster : `https://image.tmdb.org/t/p/w342/${props.movie.poster_path}`,
             backdrop: `https://image.tmdb.org/t/p/w342/${props.movie.backdrop_path}`,
             actors:[],
-            similar_movies:[],
-            id: props.movie.id  
+            similar_movies:[]
+            
         },
-
+        
+        // Ajoute un film dans le serveur REST 
         onSubmit: values => {
+          
           axios.post('http://localhost:3000/movies', {
             title: values.title,
             release_date: values.release_date,
@@ -33,8 +37,12 @@ const MovieForm = (props) => {
         })
           .then((response) => {
             console.log(response);
+            if (response.status === 201){
+              alert('Your movie has been added successfully');
+              hist.push('/movies');
+            }
           }, (error) => {
-            console.log(error);
+            alert(error);
           });
         },
 
@@ -44,12 +52,6 @@ const MovieForm = (props) => {
             errors.title = "Required";
           } else if (values.title.length < 1) {
             errors.title = "Invalid title";
-          }
-
-          if (!values.id) {
-            errors.id = "Required";
-          } else if (isNaN(values.id)) {
-            errors.id = "Type of id must be integer";
           }
     
           if (!values.release_date) {
@@ -69,17 +71,8 @@ const MovieForm = (props) => {
           
             <h3>Movie informations</h3>
 
+          {/* Formulaire d'ajout d'un film */}
             <form onSubmit={movieFormik.handleSubmit}>
-
-                <div className="input-movie-data">
-                    <label htmlFor="id">Id</label>
-                    <input 
-                    type="number" 
-                    name="id" 
-                    id="id"  
-                    defaultValue={movieFormik.values.id} 
-                    onChange={movieFormik.hanndleChange}/>
-                </div>
                 
                 <div className="input-movie-data">
                     <label htmlFor="title">Title</label>
@@ -149,8 +142,7 @@ const MovieForm = (props) => {
                 <div className="submit-movie-info">
                     <input 
                     type="submit" 
-                    value="Send movie informations"
-                    
+                    value="Add movie"
                     />
                 </div>  
 

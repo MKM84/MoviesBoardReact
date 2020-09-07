@@ -88,5 +88,8 @@ div.movie-details-edit a{
     text-decoration: none;
     line-height: 32px;
     font-size: 16px;
-
+}
+ .no-id {
+    color: #474788;
+    text-align: center; 
 }

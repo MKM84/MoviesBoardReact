@@ -1,23 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './Movies.css';
 import Movie from './Movie';
-// import MoviesContext from '../../MoviesContext';
+import { Link } from "react-router-dom";
+
 
 
 const Movies = (props) => {
 
-    // const movies = useContext(MoviesContext);
+
     const movies = props.movies;
+    const titleFilter = props.titleFilter;
 
     return(
        
         <main>
 
+         
+            {/* Section des filtres  */}
            <section className="filters-sec">
                 <div className="filters">
                     <div className="filters-inputs">
                         <h5> <i className="fa fa-filter"></i> Choose filter(s) </h5>
-                        <input type="text" placeholder=" Title"/>
+                        <input type="text" placeholder=" Title" onKeyDown={(e) => props.onFilterByTitle(e)}/>
                         <input type="date"/>
                         <select name="categories" id="categories-select">
                             <option value="">select a catogory</option>
@@ -29,19 +33,25 @@ const Movies = (props) => {
                 </div>
 
                 <div className="selected-filters-ctn">
-                    <div>
+
+                    { titleFilter === true ? 
+
+                    <div onClick={props.closeTitleFilter}>
                         <p className="selected-filter">Title </p>
                     </div>
-                    <div>
+
+                    : null }
+                    {/* <div>
                         <p className="selected-filter">Date </p>
                     </div>
                     <div>
                         <p className="selected-filter">Category </p>
-                    </div>
+                    </div> */}
                 </div>
             </section>
         
-
+            {/* Liste des films */}
+            { movies.length > 0 ? 
 
             <section className="movies-sec">
             <h2>My movies</h2>
@@ -56,6 +66,13 @@ const Movies = (props) => {
                 </div>
             </section>
 
+            : 
+            <div className="empty">
+            <h3> No movie found in your library!</h3> 
+            <p><Link to="/add">Click here to add a movie</Link></p>
+            </div>
+            
+            }
         </main>
   
     )

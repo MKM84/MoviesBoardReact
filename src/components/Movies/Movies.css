@@ -99,6 +99,16 @@
     color: #474788;
     text-align: center;
 }
+.empty {
+    text-align: center;
+}
+.empty h3{
+    color: #474788;
+}
+.empty p a{
+    color: #474788;
+
+}
 .movie{
     display: flex;
     flex-direction: row;

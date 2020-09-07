@@ -3,20 +3,20 @@ import { useParams } from "react-router-dom";
 import '../MovieForm/MovieForm.css';
 import {useFormik} from 'formik';
 import axios from 'axios';
-import MoviesContext from '../../MoviesContext';
+import {useHistory} from "react-router";
+
 
 const EditMovie = (props) => {
 
-    
+    const hist = useHistory();
+
+    // Filtrage des films selon le paramètre de l'url
     const slug_  = useParams();
-    console.log(slug_);
     const id_integer = parseInt(slug_.id);
-    console.log('integer',id_integer);
-    console.log(props);
-
     let movie = props.movies.filter((m) => m.id === id_integer)[0];
-    console.log(movie);
 
+
+    // Formulaire d'édition d'un film
     const editMovieFormik = useFormik({
         initialValues: 
         { 
@@ -28,10 +28,10 @@ const EditMovie = (props) => {
             backdrop: movie.backdrop,
             actors:[],
             similar_movies:[]
-            
         },
+        // Update le film dans le serveur
         onSubmit: values => {
-          console.log(values);
+
           axios.put('http://localhost:3000/movies/'+ movie.id, {  
             title: values.title,
             release_date: values.release_date,
@@ -45,8 +45,11 @@ const EditMovie = (props) => {
             })
             .then((response) => {
             console.log(response);
+            if (response.status === 200){
+              hist.push('/movies');
+            }
             }, (error) => {
-            console.log(error);
+            alert(error);
             });
         },
         validate: values => {
@@ -56,12 +59,6 @@ const EditMovie = (props) => {
           } else if (values.title.length < 1) {
             errors.title = "Invalid title";
           }
-
-          // if (!values.id) {
-          //   errors.id = "Required";
-          // } else if (isNaN(values.id)) {
-          //   errors.id = "Type of id must be an integer";
-          // }
     
           if (!values.release_date) {
             errors.release_date = "Required";
@@ -81,20 +78,11 @@ const EditMovie = (props) => {
 
         <section className="add-movie-form">
             <h3>Movie informations</h3>
-
+            
+            {/* // Formulaire d'édition d'un film */}
             { typeof movie != 'undefined' ?  
 
             <form onSubmit={editMovieFormik.handleSubmit}>
-                 {/* <div className="input-movie-data">
-                    <label htmlFor="id">Id</label>
-                    <input 
-                    type="number" 
-                    name="id" 
-                    id="id"  
-                    defaultValue={editMovieFormik.values.id} 
-                    onChange={editMovieFormik.hanndleChange}/>
-                </div> */}
-
                 <div className="input-movie-data">
                     <label htmlFor="title">Title</label>
                     <input 
@@ -161,7 +149,7 @@ const EditMovie = (props) => {
 
             </form>
 
-                : <h3>Id not valid or movie does not exist...</h3> }  
+                : <h3>Id does not exist...</h3> }  
 
         </section>
     )
