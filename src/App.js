@@ -30,31 +30,41 @@ function App(props) {
   }
 
   useEffect(() => {
-    fetchMovies ();
+    fetchMovies();
   }, []);
 
 
   // Supprime un film du serveur REST 
   const onDeleteMovie = (id) => {
-        axios.delete(`http://localhost:3000/movies/${id}`)
-        .then(response => {
-          console.log(response);
-          if (response.status === 200){
-            alert('Your movie has been deleted successfully');
-            fetchMovies();
-          }
-        })
-        .catch(error => {
-          alert(error);
-        })
-        .then(hist.push('/movies'));
+
+    if (window.confirm('Are you sure you want to delete this movie from your library?')) {
+
+      axios.delete(`http://localhost:3000/movies/${id}`)
+      .then(response => {
+        console.log(response);
+        if (response.status === 200){
+          fetchMovies();
+        }
+      })
+      .catch(error => {
+        alert(error);
+      })
+      .then(hist.push('/movies'));
+
+
+     }
+
   }
 
-  // const onAddMovieInfo = () => {
-  //   fetchMovies();
-  //   alert('Info');
-  // }
+  // Mettre à jour le state après l'édition d'un film 
+  const onEditMovieInfo = () => {
+    fetchMovies();
+  }
 
+    // Mettre à jour le state après l'édition d'un film 
+    const onAddMovie = () => {
+      fetchMovies();
+    }
   // Filtre les films par titre 
   const onFilterByTitle = (e) => {
     if ( e.keyCode === 13 && e.target.value !== '' ) {
@@ -86,8 +96,8 @@ function App(props) {
                 <Route exact path="/"><HomePage /></Route>
                 <Route exact path="/movies"> <Movies titleFilter={titleFilter} closeTitleFilter={closeTitleFilter} movies={movies} onDeleteMovie={onDeleteMovie} onFilterByTitle={onFilterByTitle}/></Route>
                 <Route exact path="/movie/:id"><MovieDetails movies={movies} onDeleteMovie={onDeleteMovie}/></Route>
-                <Route exact path="/add"><AddMovie /></Route>
-                <Route exact path="/movie/edit/:id">{ movies.length > 0 ? <EditMovie movies={movies}/> : null}</Route>
+                <Route exact path="/add"><AddMovie onAddMovie={onAddMovie}/></Route>
+                <Route exact path="/movie/edit/:id">{ movies.length > 0 ? <EditMovie onEditMovieInfo={onEditMovieInfo} movies={movies}/> : null}</Route>
             </Switch>;
         </div>
 

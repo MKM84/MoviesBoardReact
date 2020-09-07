@@ -36,9 +36,8 @@ const MovieForm = (props) => {
             similar_movies: values.similar_movies, 
         })
           .then((response) => {
-            console.log(response);
+            props.onAddMovie();
             if (response.status === 201){
-              alert('Your movie has been added successfully');
               hist.push('/movies');
             }
           }, (error) => {
@@ -143,6 +142,7 @@ const MovieForm = (props) => {
                     <input 
                     type="submit" 
                     value="Add movie"
+                    
                     />
                 </div>  
 

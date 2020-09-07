@@ -45,12 +45,13 @@ const EditMovie = (props) => {
             })
             .then((response) => {
             console.log(response);
+            props.onEditMovieInfo()
             if (response.status === 200){
               hist.push('/movies');
             }
             }, (error) => {
             alert(error);
-            });
+            })
         },
         validate: values => {
           const errors = {};

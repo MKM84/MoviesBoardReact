@@ -54,13 +54,14 @@ const AddMovie = (props) => {
         
     // Base url de MDB search movie
     const baseUrl = "https://api.themoviedb.org/3/search/movie?";
-    const apiKey = "e3a8676a948711d4475b4c1d59134da1";    
+    // MDB api key
+    const REACT_APP_TMDB_KEY = process.env.REACT_APP_TMDB_KEY;  
 
 
     // Cherche les films de MDB 
     const searchMovie = (e) => {
         e.preventDefault();
-        axios.get(`${baseUrl}api_key=${apiKey}&query=${movieTitle}&primary_release_year=${movieDate}`)
+        axios.get(`${baseUrl}api_key=${REACT_APP_TMDB_KEY}&query=${movieTitle}&primary_release_year=${movieDate}`)
         .then(response => {
             console.log(response);
             setMovieSearchResult(response.data.results);
@@ -135,7 +136,7 @@ const AddMovie = (props) => {
 
                 {/* Formulaire d'ajout d'un film */}
 
-                {(movieForm === true ?  <MovieForm  movie={movieToAdd[0]}/>  
+                {(movieForm === true ?  <MovieForm onAddMovie={props.onAddMovie} movie={movieToAdd[0]}/>  
                 : 
                 null
                 )}

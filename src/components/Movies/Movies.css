@@ -222,7 +222,8 @@ div.edit a{
 }
 button.delete {
     right: 130px;
-    top: 680px; 
+    bottom: 30px;
+    top: initial;
 }
 }
 /* // Small devices (landscape phones, 576px and up) */
@@ -242,7 +243,7 @@ button.delete {
  .movie {
     flex-direction: column;
     width: 90%;
-    height: 100%px;
+    height: 100%;
 }
 
 .movie {
@@ -268,8 +269,9 @@ button.delete {
 
 }
 button.delete {
-   right: 130px;
-   top: 680px; 
+    right: 130px;
+    bottom: 30px;
+    top: initial;
 }
 
 }

@@ -22,9 +22,9 @@ const Movies = (props) => {
                     <div className="filters-inputs">
                         <h5> <i className="fa fa-filter"></i> Choose filter(s) </h5>
                         <input type="text" placeholder=" Title" onKeyDown={(e) => props.onFilterByTitle(e)}/>
-                        <input type="date"/>
+                        <input type="text" placeholder=" Date"/>
                         <select name="categories" id="categories-select">
-                            <option value="">select a catogory</option>
+                            <option value=""> Catogory</option>
                             <option value="dog"> Action</option>
                             <option value="cat">Adventure</option>
                             <option value="cat">Sciences-Fiction</option>
