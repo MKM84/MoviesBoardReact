@@ -3,23 +3,37 @@
 .movie-details-sec{
     margin: 0 auto;
 }
+.movie-details-sec h3 {
+    color: #474788;
+    text-align: center;
+    margin-top: 70px;
+    font-size: 28px;
+
+}
+
+.hero-img {
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 140px;
+}
 .movie-details{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    margin-top: 5%;
-    margin-bottom: 15%;
     width: 940px;
     background-color:#F7F7F7;
     border-radius: 30px;
-    height:600px;
+    height: 420px;
     position: relative;
     box-shadow: 0 3px 6px 0 #ccc;
+    top: 80px;
 }
 .movie-details img.poster{
-    height:600px;
+    height: 420px;
     position: absolute;
     top: 0;
     left: 0;
@@ -38,9 +52,9 @@
 }
 .movie-details-infos{
     padding: 16px;
-    width: 490px;
+    width: 590px;
     position: absolute;
-    right: 3px;
+    right: 16px;
 }
 .movie-details-infos h3{
     color: #474788;
@@ -57,39 +71,71 @@
     color: #474788;
 }
 .movie-details-infos a{
-    text-decoration: none;
     color: #474788;
 }
-button.movie-details-delete{
+.movie-details-delete{
     position: absolute;
-    right: 20px;
-    top: 25px;
+    right: 40px;
+    top: 40px;
     border: none;
     background: none;
     font-size: 40px;
-    color: #474788;
+    color: #8484ab91;
     cursor: pointer;
+    z-index: 10;
+
+
 }
-div.movie-details-edit{
+.movie-details-edit{
     position: absolute;
-    right: 50px;
-    bottom: 30px;
-    background: #474788;
+    right: 100px;
+    top: 44px;
     border: none;
-    color: #fff;
-    width: 90px;
-    height: 32px;
-    font-family: 'Raleway', sans-serif;
+    background: none;
+    font-size: 40px;
     cursor: pointer;
-    text-align: center;
+    z-index: 10;
 }
-div.movie-details-edit a{
-    color: #fff;
-    text-decoration: none;
-    line-height: 32px;
-    font-size: 16px;
+.movie-details-edit i {
+    color: #8484ab91;
 }
+
  .no-id {
     color: #474788;
     text-align: center; 
 }
+.actors-ctn{
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.similar-movies-ctn{
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+.actor, .similar{
+    background-color:#F7F7F7;
+    width: 200px;
+    border-radius: 20px 20px;
+    box-shadow: 0 3px 6px 0 #ccc;
+}
+.actor img, .similar img {
+    width: 100%;
+    border-top-left-radius: 20px 20px;
+    border-top-right-radius: 20px 20px;
+}
+.actor figcaption, .similar figcaption {
+    padding: 10px;
+}
+.actor figcaption p.actor-name, .similar figcaption p.similar-title{
+    color: #474788;
+}
+
+

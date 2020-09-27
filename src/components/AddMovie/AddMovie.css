@@ -37,6 +37,9 @@
     max-width: 60%;
     margin: 0 auto;
 }
+/* ---------------------------------------------------------- */
+/* Resultas de recherche */
+/* ---------------------------------------------------------- */
 
 .movie-result-form {
     display: flex;
@@ -55,17 +58,30 @@
     justify-content: space-between;
     background-color: #F7F7F7;
     margin: 20px;
-    padding: 10px;
     width: 40%;
     min-width: 350px;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 0 3px 6px 0 #ccc;
 
 }
+.img-ctn{
+    height: 150px;
+}
+.searchResult img{
+    height: 150px;
+    border-top-left-radius: 20px 20px;
+    border-bottom-left-radius: 20px 20px;
+}
+
 .searchResult button{
-    width: 60px;
-    height: 30px;
-    background: #474788;
+    margin-right: 16px;
     border: none;
-    color: #fff;
+    color: #474788;
+    background: none;
+    font-size: 30px;
+    cursor: pointer;
+
 }
 
 .please-search{

@@ -14,7 +14,14 @@ const Movies = (props) => {
     return(
        
         <main>
-
+            <div>
+                <Link to="/add/movie">
+                    <div className="btn-navigation">
+                    <i className="fa fa-plus-circle"></i>
+                        <p><b>Add movie</b></p>
+                    </div>
+                </Link>
+                </div>
          
             {/* Section des filtres  */}
            <section className="filters-sec">
@@ -68,8 +75,7 @@ const Movies = (props) => {
 
             : 
             <div className="empty">
-            <h3> No movie found in your library!</h3> 
-            <p><Link to="/add">Click here to add a movie</Link></p>
+            <h3> No movies found in your library!</h3> 
             </div>
             
             }

@@ -1,82 +1,60 @@
 /* Formulaire de movie data  */
 /* ---------------------------------------------------------- */
-.add-movie-form h3{
+
+.movie-form form {
     text-align: center;
-    margin-top: 50px;
-    color: #474788;
+    width: 100%;
 }
-.add-movie-form{
-    margin-bottom: 50px;
-}
-div.input-movie-data input{
-    width: 85%;
-    height: 28px;
+.input-10 {
+    width: 13%;
+    margin: 3px;
+} 
+.input-30 {
+    width: 40%;
+    margin: 3px;
 
+} 
+.input-60 {
+    width: 81%;
+    margin: 3px;
+
+} 
+
+input {
     border: 1px solid #e7e7e7;
-    box-shadow: 0 2px 2px 0 rgb(245, 245, 245);
-}
-div.input-movie-data label{
-    width: 15%;
-    height: 28px;
-    font-size: 14px;
-    color: #707070;
+    height: 30px;
+    font-family: ;
+} 
 
-}
-div.input-movie-data{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 950px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
-div.input-movie-categories{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 950px;
-    margin: 0 auto;
-    margin-top: 20px;
-}
-div.input-movie-categories div{
-    width: 86%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-div.input-movie-categories div input{
-    height: 28px;
-
+textarea {
     border: 1px solid #e7e7e7;
-   box-shadow: 0 2px 2px 0 rgb(245, 245, 245);;
+    min-height: 30px;
+    color: #3c3c3c;
+    opacity: 1; /* Firefox */
+    font-family: 'Raleway', sans-serif;
 }
-
-div.input-movie-categories label{
-    width: 15%;
-    height: 28px;
-    font-size: 14px;
-    color: #707070;
-}
-.input-movie-data textarea{
-    width: 85%;
-    max-width: 85%;
-    min-width: 84%;
-    border: 1px solid #e7e7e7;
-   box-shadow: 0 2px 2px 0 rgb(245, 245, 245);
-}
-.add-movie-form input[type=submit]{
-    width: 170px;
+button {
     background: #474788;
     border: none;
     color: #fff;
     height: 30px;
-    margin: 0 auto;
-    text-align: center;
+
 }
-.submit-movie-info{
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 50px;
+h3 {
+    color: #474788;
+}
+input { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #3c3c3c;
+    opacity: 1; /* Firefox */
+    font-family: 'Raleway', sans-serif;
+  }
+  button.input-send {
+      margin: 30px;
+      background: #884761;
+      height: 40px;
+      width: 13%;
+
+  }
+.remove {
+    background-color: #6e6e6e;
 }

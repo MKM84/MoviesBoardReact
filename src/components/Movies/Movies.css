@@ -1,5 +1,11 @@
 /* Section des filtres de la page movies */
 /* ---------------------------------------------------------- */
+.filters-sec{
+    position: sticky;
+    top: 0;
+    z-index: 18;
+}
+
 .filters{
     background-color: #F7F7F7;
     box-shadow: 0 3px 6px 0 #ccc;
@@ -35,6 +41,52 @@
 .fa-filter{
     font-size: 20px;
     color: #474788;
+}
+.btn-navigation {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ededed;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+    transition: all 0.5s 0s ease;
+    position: fixed;
+    right: 40px;
+    top: 172px;
+    z-index: 20;
+    border-radius: 20px;
+}
+
+.btn-navigation {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ededed;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+    -webkit-transition: all 0.5s 0s ease;
+    -moz-transition: all 0.5s 0s ease;
+    -o-transition: all 0.5s 0s ease;
+    transition: all 0.5s 0s ease;
+}
+.btn-navigation:hover{
+    box-shadow: 0 3px 6px 0 #ccc;
+}
+.btn-navigation i {
+    font-size: 27px;
+    color: #474788;
+    margin-top: 20px;
+    
+}
+.btn-navigation b {
+    text-decoration: none;
+    color: #474788 !important;
 }
 
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Movies from './components/Movies/Movies';
-import HomePage from './components/HomePage/HomePage';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import AddMovie from './components/AddMovie/AddMovie';
 import EditMovie from './components/EditMovie/EditMovie';
@@ -15,6 +14,7 @@ function App(props) {
 
   // Liste des films
   const [movies, setMovies] = useState([]);
+  const [moviesIsApdated, setMoviesIsApdated] = useState(false);
 
   // Sert à afficher ou masquer l'encart qui indique que le filtrage par titre est active
   const [titleFilter, setTitleFilter] = useState(false);
@@ -28,10 +28,14 @@ function App(props) {
       });
 
   }
-
+  
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    setTimeout(() => {
+      fetchMovies(); 
+    }, 500);
+      
+  }, [ moviesIsApdated ]);
+
 
 
   // Supprime un film du serveur REST 
@@ -41,42 +45,39 @@ function App(props) {
 
       axios.delete(`http://localhost:3000/movies/${id}`)
       .then(response => {
-        console.log(response);
+        
         if (response.status === 200){
+          setMoviesIsApdated(!moviesIsApdated);
           fetchMovies();
+          console.log("Delete succes");
         }
       })
       .catch(error => {
         alert(error);
       })
-      .then(hist.push('/movies'));
-
-
+      .then(hist.push('/'));
      }
 
   }
 
-  // Mettre à jour le state après l'édition d'un film 
-  const onEditMovieInfo = () => {
-    fetchMovies();
-  }
 
-    // Mettre à jour le state après l'édition d'un film 
-    const onAddMovie = () => {
-      fetchMovies();
+    // Mettre à jour le state après l'ajout d'un film 
+    const onAddOrEditMovie = () => {
+      fetchMovies(); 
+      setMoviesIsApdated(!moviesIsApdated);
+     
+      
     }
+
   // Filtre les films par titre 
   const onFilterByTitle = (e) => {
     if ( e.keyCode === 13 && e.target.value !== '' ) {
         let moviesCopy = movies;
-        let moviesToFilter = [];
-        for (let i = 0; i < moviesCopy.length; i++) {
-            if (moviesCopy[i].title.includes(e.target.value)){
-                moviesToFilter.push(moviesCopy[i]);
-            }
-        }  
-         setMovies(moviesToFilter); 
-         setTitleFilter(!titleFilter);    
+        const filteredMovies = moviesCopy.filter(m => m.title.includes(e.target.value));
+        if(filteredMovies.length > 0 ) {
+         setMovies(filteredMovies); 
+         setTitleFilter(!titleFilter); 
+        }   
     }  
   }
 
@@ -93,11 +94,10 @@ function App(props) {
             <Link to='/' ><h1>MoviesBoard</h1></Link>
             </header>
             <Switch>
-                <Route exact path="/"><HomePage /></Route>
-                <Route exact path="/movies"> <Movies titleFilter={titleFilter} closeTitleFilter={closeTitleFilter} movies={movies} onDeleteMovie={onDeleteMovie} onFilterByTitle={onFilterByTitle}/></Route>
+                <Route exact path="/"> <Movies titleFilter={titleFilter} closeTitleFilter={closeTitleFilter} movies={movies} onDeleteMovie={onDeleteMovie} onFilterByTitle={onFilterByTitle}/></Route>
                 <Route exact path="/movie/:id"><MovieDetails movies={movies} onDeleteMovie={onDeleteMovie}/></Route>
-                <Route exact path="/add"><AddMovie onAddMovie={onAddMovie}/></Route>
-                <Route exact path="/movie/edit/:id">{ movies.length > 0 ? <EditMovie onEditMovieInfo={onEditMovieInfo} movies={movies}/> : null}</Route>
+                <Route exact path="/add/movie"><AddMovie onAddOrEditMovie={onAddOrEditMovie}/></Route>
+                <Route exact path="/movie/edit/:id">{ movies.length > 0 ? <EditMovie onAddOrEditMovie={onAddOrEditMovie} movies={movies}/> : null}</Route>
             </Switch>;
         </div>
 
