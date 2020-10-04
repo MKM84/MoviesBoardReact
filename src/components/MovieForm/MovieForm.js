@@ -20,13 +20,13 @@ import {useHistory} from "react-router";
   
 
       useEffect(() => {
-        if( props.movie !== undefined){  
+        if( props.movie !== undefined && movieFormValues.length < 1){  
         setMovieFormValues(props.movie)}  
-        if( props.actors !== undefined){  
+        if( props.actors !== undefined && actors.length < 1){  
           setActors(props.actors)}  
-          if( props.similarMovies !== undefined){  
+          if( props.similarMovies !== undefined && similars.length < 1){  
             setSimilars(props.similarMovies)}      
-      }, [props.movie, props.actors, props.similarMovies]);
+      }, [props.movie, props.actors, props.similarMovies, movieFormValues, actors, similars]);
 
 
 // Controle le formulaire 
@@ -257,7 +257,7 @@ import {useHistory} from "react-router";
 
                         actors.map((actor, index) => 
 
-                          <div key={"key_" + index}>
+                          <div key={"key_" + actor.name + index}>
 
                           <input 
                             type="text" 
@@ -326,7 +326,7 @@ import {useHistory} from "react-router";
 
                       similars.map((similar, index) => 
 
-                        <div key={"key_" + index}>
+                        <div key={"key_" + similar.title + index}>
 
                         <input 
                           type="text" 
