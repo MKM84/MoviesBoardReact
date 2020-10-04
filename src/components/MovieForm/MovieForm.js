@@ -20,13 +20,13 @@ import {useHistory} from "react-router";
   
 
       useEffect(() => {
-        if( props.movie !== undefined && movieFormValues.length < 1){  
+        if( props.movie !== undefined){  
         setMovieFormValues(props.movie)}  
-        if( props.actors !== undefined && actors.length < 1){  
+        if( props.actors !== undefined){  
           setActors(props.actors)}  
-          if( props.similarMovies !== undefined && similars.length < 1){  
+          if( props.similarMovies !== undefined){  
             setSimilars(props.similarMovies)}      
-      }, [props.movie, props.actors, props.similarMovies, movieFormValues, actors, similars]);
+      }, [props.movie, props.actors, props.similarMovies]);
 
 
 // Controle le formulaire 
