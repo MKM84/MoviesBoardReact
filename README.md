@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### `Before running the app`
 
+You will need a REST server to be able to launch the app, contact me to get it.
+
 Runs the app in the development mode.<br />
 Create an .env file at the root of the folder at the same level is the app.js file.
 In the .env file that you have just created you will need to use an MDB API key.
